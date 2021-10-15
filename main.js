@@ -31,130 +31,120 @@ const characters = [
 
 // MAP
 console.log("Map ..")
-for (let i=0 ;i<characters.length;i++){
-console.log("Name is :["+characters[i].name +"] the Height is : ["+ characters[i].height+"]")
-console.log("----------------")
-}
 
-//REDUCE
-console.log("REDUCE ..")
-let sum =0;
+ console.log('Get array of all names')
+console.log( characters.map(Map));
 
-for(let i=0 ;i<characters.length ;i++){
-
-sum= sum + characters[i].height
-
-
-}
-console.log("Total heigth is :"+sum)
-console.log("----------------")
-
-
-//  
-let count =0
-
- for( let i =0 ;i<characters.length ;i++)
-    {
-if (characters[i].eye_color =="blue")
-    count = count+1;
-
-}
-
-console.log("The total of blue eye is :"+ count)
-console.log("----------------")
-
-//FILTER
-console.log("FILTER .... ")
-for (let i=0 ;i< characters.length ;i++){
-
-
-    if (characters[i].height <200)
-
-    console.log(" Heigth less than 200 ["+characters[i].height+"]")
-}
-console.log("----------------")
-
-for (let i=0 ;i<characters.length ;i++){
-
-if (characters[i].gender =="male")
-console.log("["+characters[i].name +"] Is a male ")
- 
-}
-console.log("----------------")
-
-//SORT
-
-console.log("SORT")
-
- characters.sort((a,b)=>{
-return a.mass - b.mass;
- })
-
- console.log(characters)
-
+ function Map(item){
+     return[item.name].join(' ');
+ }
  console.log("----------------")
 
- characters.sort((a,b)=>{
-    return a.height - b.height;
-     })
-
-     console.log(characters)
-     console.log("----------------")
-
-
-     // EVERY
-     console.log("EVERY")
-     let mas= false;
-
-     for( let i =0 ; i< characters.length ;i++){
  
-         if(characters[i].mass  >= 40){
-                 mas= true;
-         
-        }
-        break
-     }
-       console.log(mas)
-       console.log("----------------")
+ 
+console.log('Get array of all heights')
+
+console.log(characters.map(Map2))
  
 
+function Map2(item){
+    return[item.height].join(' ');
+}
+console.log("----------------")
 
-       let short= false;
-
-     for( let i =0 ; i< characters.length ;i++){
+//REDUCE
+console.log('REDUCE')
+console.log('Get total height of all characters')
+console.log("----------------")
  
-         if(characters[i].height <200){
-                 mas= true;
-         
-        }
-        break
-     }
-       console.log(short)
-       console.log("----------------")
+console.log(characters.reduce(Reduce,0));
+ 
+
+function Reduce(total,num){
+     
+
+return  total + num.height; 
+}
+console.log("----------------")
 
 
-//SOME
-console.log("SOME")
-    let eyeBlue= false;
+ 
+//FILTER
+console.log("FILTER .... ")
+console.log("----------------")
+ console.log('Get characters with height less than 200')
 
-    for( let i =0 ; i< characters.length ;i++){
+console.log(characters.filter(Filter));
 
-        if(characters[i].eye_color =="blue"){
-        eyeBlue= true;
-        break}
-    }
-      console.log(eyeBlue)
-      console.log("----------------")
-
+function Filter(check){
+    return check.height <200;
+}
 
 
-      let taller= false;
 
-    for( let i =0 ; i< characters.length ;i++){
+console.log("----------------")
 
-        if(characters[i].height >210){
-        taller= true;
-        break}
-    }
-      console.log(taller)
-      console.log("----------------")
+console.log('Get all male characters')
+
+console.log(characters.filter(Filter2));
+
+function Filter2(check){
+    return check.gender =='male';
+}
+
+console.log("----------------")
+
+console.log('SORT')
+console.log('Sort by mass')
+
+
+console.log(characters.sort(SORT))
+function SORT(a,b){
+    return a.mass -b.mass;
+}
+console.log("----------------")
+console.log('Sort by height')
+
+console.log(characters.sort(SORT2))
+
+function SORT2(a,b){
+    return a.height -b.height;
+}
+console.log("----------------")
+
+console.log('EVERY')
+console.log('Does every character have mass more than 40?')
+
+console.log(characters.every(EV))
+function EV(check){
+
+    return check.mass >40;
+}
+console.log("----------------")
+console.log('Is every character shorter than 200?')
+
+console.log(characters.every(EV))
+function EV(check){
+
+    return check.height <200;
+}
+console.log("----------------")
+
+ 
+console.log('SOME')
+console.log('Is there at least one character with blue eyes?')
+
+console.log(characters.some(SO))
+
+function SO (ch){
+    return ch.eye_color=="blue";
+}
+
+console.log("----------------")
+
+console.log('Is there at least one character taller than 210?')
+console.log(characters.some(SO2))
+
+function SO2 (ch){
+    return ch.height > 210;
+}
